@@ -1,2 +1,4 @@
 browser_shell/webrtc_event_logs/*
 browser_shell/blob_storage/*
+
+.vscode/*

@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title> SmartHire | Sign In </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/candidate.css">
+        <script src="assets/candidate.js"></script>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">    
+            <div style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white;"> <h4> ezLearn </h4> </div>          
+        </nav>         
+        <br/><br/><br/> <br/>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="tab-content">
+                        <div id="candidate-login" class="tab-pane container active">
+                            <form action="#" method="POST" class="needs-validation" novalidate>
+                                <div class="form-group form-check">
+                                    <label for="user"> Roll Number: </label>
+                                    <input class="form-control" type="text" name="username" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label for="user"> Password: </label>
+                                    <input class="form-control" type="password" name="pwd" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label style="margin-left: 20px;" class="form-check-label">
+                                      <input class="form-check-input" type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-dark center-block">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                
+                
+                        <div id="interviewer-login" class="tab-pane container fade container">
+                            <form action="#" method="POST" class="needs-validation" novalidate>
+                                <div class="form-group form-check">
+                                    <label for="user"> Interviewer ID: </label>
+                                    <input class="form-control" type="text" name="username" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label for="user"> Password: </label>
+                                    <input class="form-control" type="password" name="pwd" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div style="margin-left: 20px;" class="form-group form-check">
+                                    <label class="form-check-label">
+                                      <input class="form-check-input" type="checkbox" name="remember-me"> Remember me
+                                    </label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-dark center-block">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+
+    </body>
+</html>

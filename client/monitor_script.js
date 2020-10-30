@@ -13,6 +13,7 @@ let sz = 300;
 let multiple_people_memory = null;
 let people_wnd = [];
 let people_warn = [];
+let sz_people = 100; //Different limits?
 //
 
 class Slicer{
@@ -116,9 +117,9 @@ function drawKeypoints() {
 		for (let j = 0; j < pose.keypoints.length; j++) {
 			let keypoint = pose.keypoints[j];
 			if (keypoint.score > 0.2) {
-			fill(0, 0, 255);
-			noStroke();
-			ellipse(keypoint.position.x, keypoint.position.y, 3, 3);
+				fill(0, 0, 255);
+				noStroke();
+				ellipse(keypoint.position.x, keypoint.position.y, 3, 3);
 			}
 		}
 	}

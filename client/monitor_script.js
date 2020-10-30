@@ -16,6 +16,9 @@ let people_warn = [];
 let sz_people = 100; //Different limits?
 //
 
+let frame_counter = 0;
+let sus_time_markers = [];
+
 class Slicer{
 	constructor()
 	{
@@ -61,6 +64,15 @@ function setup() {
 	webcam_output.hide();
 }
 
+susMarker = (type) => {
+	if (sus_time_markers.length == 0) {
+		sus_time_markers.push([frame_counter, type]);
+	}
+	else if (sus_time_markers[sus_time_markers.length - 1][1] != type) {
+		sus_time_markers.push([frame_counter, type]);
+	}
+}
+
 function modelReady() {
 	//select('#status').html('Model Loaded');
 	//setInterval(singlePose, 3000);
@@ -73,7 +85,7 @@ handle_multiple_people = () => {
 	multiple_people_memory.add(poses.length>=2?2:1);
 	people_wnd.push(multiple_people_memory.obgetMode());
 	let res = null;
-	if (people_wnd.length >= sz) {
+	if (people_wnd.length >= sz_people) {
 		res = Slicer.getMode(people_wnd);
 		if (people_warn.length == 0)
 			people_warn.push(res);
@@ -88,12 +100,16 @@ handle_multiple_people = () => {
 		people_warn = [];
 	if (people_warn.length == 3 && people_warn[0] != 1) {
 		console.log("PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU");
+		//sus_time_markers.push([frame_counter, "multipeople-warn"]);
+		susMarker("multipeople-warn");
 		var el = document.getElementById('status');
 		el.style.borderColor = "yellow";
 		el.style.color = "yellow";
 		select('#status_people').html('PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU');
 	}
 	if (warn.length >= 5 && warn[0] != 1) {
+		//sus_time_markers.push([frame_counter, "multipeople-critical"]);
+		susMarker("multipeople-critical");
 		select('#status_people').html('Ask people to run away!');
 		var el = document.getElementById('status_people');
 		el.style.borderColor = "red";
@@ -105,9 +121,11 @@ handle_multiple_people = () => {
 
 function draw() {
 	image(webcam_output, 0, 0, width, height);
+	frame_counter += 1;
 	handle_multiple_people();
 	drawKeypoints();
 	drawSkeleton();
+	console.log(sus_time_markers);
 }
 
 function drawKeypoints() {
@@ -150,6 +168,8 @@ function checkValidity(pose)
 		warn = [];
 	if (warn.length == 3 && warn[0] != 's') {
 		console.log("WARN");
+		//sus_time_markers.push([frame_counter, "lookaway-warn"]);
+		susMarker("lookaway-warn");
 		var el = document.getElementById('status');
 		el.style.borderColor = "yellow";
 		el.style.color = "yellow";
@@ -157,6 +177,8 @@ function checkValidity(pose)
 	}
 	if (warn.length >= 5 && warn[0] != 'l') {
 		select('#status').html('Concentrate!');
+		//sus_time_markers.push([frame_counter, "lookaway-critical"]);
+		susMarker("lookaway-critical");
 		var el = document.getElementById('status');
 		el.style.borderColor = "red";
 		el.style.color = "red";

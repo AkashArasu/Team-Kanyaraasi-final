@@ -1,10 +1,20 @@
 let webcam_output;
 let poseNet;
 let poses = [];
-let wnd = [];
-let sz = 300;
 
+//Config vars for face pose
+let memory = null;
+let wnd = [];
 let warn = []
+let sz = 300;
+//
+
+//Config vars for people in frame
+let multiple_people_memory = null;
+let people_wnd = [];
+let people_warn = [];
+//
+
 class Slicer{
 	constructor()
 	{
@@ -31,9 +41,11 @@ class Slicer{
 }
 
 var cnv;
-let memory = null;
 function setup() {
 	memory = new Slicer();
+	//People count expr
+	multiple_people_memory = new Slicer();
+	//
 	cnv=createCanvas(250, 250);
 	webcam_output = createCapture(VIDEO);
 	console.log(width, height);
@@ -43,23 +55,56 @@ function setup() {
 	poseNet = ml5.poseNet(webcam_output, modelReady);
 
 	poseNet.on('pose', function(results) {
-	poses = results;
+		poses = results;
 	});
 	webcam_output.hide();
 }
 
 function modelReady() {
-  //select('#status').html('Model Loaded');
-  //setInterval(singlePose, 3000);
-  //select('#status').html('Warning you are getting distracted');
-  
-  singlePose();
+	//select('#status').html('Model Loaded');
+	//setInterval(singlePose, 3000);
+	//select('#status').html('Warning you are getting distracted');
+	singlePose();
 }
 
+handle_multiple_people = () => {
+	//
+	multiple_people_memory.add(poses.length>=2?2:1);
+	people_wnd.push(multiple_people_memory.obgetMode());
+	let res = null;
+	if (people_wnd.length >= sz) {
+		res = Slicer.getMode(people_wnd);
+		if (people_warn.length == 0)
+			people_warn.push(res);
+		else if (people_warn[people_warn.length - 1] == res)
+			people_warn.push(res);
+		else people_warn = [];
+		for (var i = 0; i < 100;++i)
+		people_wnd.shift();
+	}
 
+	if (people_warn.length >= 5 && people_warn[0] == 1)
+		people_warn = [];
+	if (people_warn.length == 3 && people_warn[0] != 1) {
+		console.log("PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU");
+		var el = document.getElementById('status');
+		el.style.borderColor = "yellow";
+		el.style.color = "yellow";
+		select('#status_people').html('PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU');
+	}
+	if (warn.length >= 5 && warn[0] != 1) {
+		select('#status_people').html('Ask people to run away!');
+		var el = document.getElementById('status_people');
+		el.style.borderColor = "red";
+		el.style.color = "red";
+		//select('#videoPlayer').pause();
+	}
+	//
+}
 
 function draw() {
 	image(webcam_output, 0, 0, width, height);
+	handle_multiple_people();
 	drawKeypoints();
 	drawSkeleton();
 }

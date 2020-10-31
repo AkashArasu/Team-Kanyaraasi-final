@@ -6,7 +6,7 @@ To be filled
 ### Instructions to start browser[DEV]
 
 ```sh
-pip3 install cefpython=0.66
+pip3 install cefpython3=66.0
 cd browser_shell & pip3 browser_main.py
 ```
 

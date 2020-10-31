@@ -6,7 +6,7 @@ let poses = [];
 let memory = null;
 let wnd = [];
 let warn = []
-let sz = 200;
+let sz = 100;
 //
 
 //Config vars for people in frame
@@ -24,10 +24,10 @@ class Slicer{
 	{
 		this.data = []
 	}
-	add(x)
+	add(x,sz)
 	{
 		if (this.data.length >= sz) {
-			for (var i = 0; i < 100;++i)
+			for (var i = 0; i < sz/2;++i)
 			this.data.shift();
 		}
 		this.data.push(x);
@@ -90,7 +90,7 @@ function modelReady() {
 
 handle_multiple_people = () => {
 	//
-	multiple_people_memory.add(poses.length==1?1:2);
+	multiple_people_memory.add(poses.length==1?1:2,sz_people);
 	people_wnd.push(multiple_people_memory.obgetMode());
 	let res = null;
 	if (people_wnd.length >= sz_people) {
@@ -152,9 +152,9 @@ function drawKeypoints() {
 function checkValidity(pose)
 {
 	pos = detect(pose);
-	memory.add(pos[0]);
+	memory.add(pos[0],sz);
 	if(pos[1]=='s')
-	memory.add(pos[1]);
+	memory.add(pos[1],sz);
 
 	wnd.push(memory.obgetMode());
 	let res = null;

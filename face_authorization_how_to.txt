@@ -1,0 +1,76 @@
+Requirements to install:
+face-recognition==1.3.0
+face-recognition-models==0.3.0
+
+---------------
+
+Copy paste this code in views.py:
+
+from django.shortcuts import render
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from django.http import JsonResponse
+from django.core import serializers
+from django.conf import settings 
+import json
+
+import base64
+import face_recognition
+import os
+
+
+@api_view(["POST"])
+def faceauth(data):
+    try:
+        object=data.data
+        
+        #object =={'id':'email id or whatever','img':'the base 64 string'} 
+        #img must be in jpeg format
+        encoded_img=object['img']
+        imgdata = base64.b64decode(encoded_img)
+        
+        f=open("./temp.jpg",'wb')
+        f.write(imgdata)
+        
+        picture_of_me=face_recognition.load_image_file(f.name)
+        face_encoding = face_recognition.face_encodings(picture_of_me)[0]
+        
+        ref_path="C:/Users/takas/OneDrive/Pictures/Camera Roll/Akash DB.jpg" #the path to the image stored for reference
+        
+        ref_image_enc=face_recognition.face_encodings(face_recognition.load_image_file(ref_path))[0]
+        results = face_recognition.compare_faces([face_encoding],ref_image_enc)
+        f.close()
+        os.remove("./temp.jpg")
+        if(results[0]==True):
+            
+            return JsonResponse("Authorized!",safe=False)
+        else:
+            return JsonResponse("Unauthorized",safe=False)
+
+    except ValueError as e:
+        return Response("Error:"+str(e.args),status.HTTP_404_NOT_FOUND)
+
+----------------
+
+Add this to urls.py urlpatterns=[]:
+
+path(r'faceauth/',views.faceauth)
+
+----------------
+
+Access the endpoint at:
+http://<localserverip>:<port>/faceauth
+
+----------------
+
+Send payload in this json format:
+{"id":"email or whatever","img":"<your base64 encoded image>"}
+
+-----------------
+Response:
+
+
+If the images match "Authorize" string will be returned(as JsonResponse, can change it if you want). If it doesnt match Unauthorized will be returned

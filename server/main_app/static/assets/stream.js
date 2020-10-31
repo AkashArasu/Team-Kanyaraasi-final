@@ -18,7 +18,13 @@
   
     function startup() {
       video = document.getElementById('video');  
-      navigator.mediaDevices.getUserMedia({video: true, audio: true})
+      navigator.mediaDevices.getUserMedia({
+        video: true, 
+        audio: {
+          sampleSize: 8,
+          echoCancellation: true,
+          noiseSuppression: true
+      }})
       .then(function(stream) {
         video.srcObject = stream;
         video.play();

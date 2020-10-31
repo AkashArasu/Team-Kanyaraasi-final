@@ -1,4 +1,4 @@
-Django
-django-crispy-forms
-django-webcam
-Pillow
+Django==3.1.2
+django-crispy-forms==1.9.2
+django-webcam==0.4.2
+Pillow==8.0.1

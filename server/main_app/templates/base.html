@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block custom %}
+    {% endblock %}
 </head>
 
 <body>
@@ -26,7 +28,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="#"> <i class="fa fa-bell" aria-hidden="true"></i> Notifications</a>
-                    <a class="dropdown-item" href="{% url 'profile' %}"> <i class="fa fa-user" aria-hidden="true"></i>
+                    <a class="dropdown-item" href="{% url 'profile' username=user.username %}"> <i class="fa fa-user" aria-hidden="true"></i>
                         Profile </a>
                     <a class="dropdown-item" href="{% url 'logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> Sign out </a>
                 </div>

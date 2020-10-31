@@ -97,7 +97,7 @@
 
         var data = canvas.toDataURL('image/png');
         console.log(data);
-        document.getElementById('id_photo').innerText = data;
+        document.getElementById('id_photo').value = data;
         photo.setAttribute('src', data);
       } else {
         clearphoto();

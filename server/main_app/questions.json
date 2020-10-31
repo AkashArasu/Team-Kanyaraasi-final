@@ -1,0 +1,8 @@
+{
+    "DSA":{
+        "1":{"Type":"MCQ","Question": "Which of the following usees FIFO method?","Option A":"Queue","Option B":"Stack","Option C":"Binary Search Tree","Option D":"Hash Map","Answer":"Option B",
+        "2":{"Type":"MCQ","Question": "Travelling salesman problem is an example of","Option A":"Dynamic Algorithm","Option B":"Greedy Algorithm","Option C":"Recursive Approach","Option D":"Divide & Conquer","Answer":"Option A"},
+        "3":{"Type":"MCQ","Question": "Which of the following is example of in-place algorithm?","Option A":"Bubble Sort","Option B":"Merge Sort","Option C":"Insertion Sort","Option D":"All of the above","Answer":"Option D"},
+        "4":{"Type":"Programming","Question":"Write a program to create a singly linked list of n nodes and display it in reverse order"}
+    }
+}

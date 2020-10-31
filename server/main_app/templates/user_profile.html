@@ -16,12 +16,12 @@
 {% block content %}
     <div class="container">
         <img style="max-height:200px; max-width:200px; object-fit:cover;"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRUVtRA2izvCkOG0ShGfHI_OCQ8liGbjn_HEw&usqp=CAU"
+            src="{{profile.photo}}"
             class="rounded-circle mx-auto d-block" alt="Cinque Terre">
         <div class="row">
             <div class="col-sm"></div>
             <div class="col-sm-3 text-center span-heading-effect" name="candidate-name">
-                <h4> {{user.username}} </h4>
+                <h4> {{user.username}} {{user.email}} {{profile.address}} </h4>
             </div>
             <div class="col-sm"></div>
         </div> <br />

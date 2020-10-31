@@ -1,0 +1,112 @@
+<html lang="en-US">
+    <head>
+        <title> ezLearn </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script>
+            window.onload = function() {
+            var hour=1;
+            var minute = 4;
+            var sec = 59;
+            setInterval(function() {
+                h=(hour<10)?("0" + hour) : hour ;
+                m=(minute<10)?("0" + minute) : minute;
+                s=(sec<10)?("0" + sec) : sec;
+                
+                document.getElementById("timer").innerHTML = h +"h "+ m + "m " + s +"s ";
+                sec--;
+
+                if (sec == 00) {
+                minute --;
+                sec = 59;
+                if (minute == 0) {
+                    hour--;
+                    min=59;
+                }
+                }
+
+                if (sec==0 && minute==0 && hour==0){
+                    alert("Test Over");
+                }
+
+            }, 1000);
+            }
+        </script>
+
+        <script type="text/javascript">
+            function saveOption(){
+                var A=document.getElementById('a').checked;
+                var B=document.getElementById('b').checked;
+                var C=document.getElementById('c').checked;
+                var D=document.getElementById('d').checked;
+                if (A||B||C||D){
+                    document.getElementById('save-btn').disabled=false;
+                }
+                else{
+                    document.getElementById('save-btn').disabled=true;
+
+                }
+            }
+        </script>
+
+    <script src="assets/stream.js"></script>
+    </head>
+
+    <body style="overflow: hidden;">
+        <!-- Translate -->
+        <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                    {pageLanguage: 'en'},
+                    'google_translate_element'
+                );
+            }
+        </script>
+        <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- End of Translate -->
+
+        <!-- Video Streaming -->
+        <div class="camera-box" style="position: fixed; bottom:0;right:0">
+            <div class="camera">
+               <video id="video">Video stream not available.</video>
+            </div>
+         </div>
+
+        <!-- End of Video Streaming-->
+
+        <nav class="row navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="col-sm-3" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white;"> <h4> ezLearn </h4> </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3" style="float: right; color: white;"> Time Remaining: <span id="timer"> </span> </div> 
+            <div class="col-sm-2" id="google_translate_element"></div>   
+             
+        </nav>
+
+       
+        <div class="container" style="margin: 50px auto auto auto; border:1px solid black; padding: 10px;">
+            <div class="question text-justify"> {question} </div> <hr style="border: 1px dotted;">
+                <div>
+                    <input type="radio" id="a" name="mcq" onclick="saveOption()"> 
+                    <label for="option-a"> {option a} </label><br/>
+                    <input type="radio" id="b" name="mcq" onclick="saveOption()"> 
+                    <label for="option-b"> {option b} </label><br/>
+                    <input type="radio" id="c" name="mcq" onclick="saveOption()"> 
+                    <label for="option-c"> {option c} </label><br/>
+                    <input type="radio" id="d" name="mcq" onclick="saveOption()"> 
+                    <label for="option-d"> {option d} </label><br/>
+                </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" id="save-btn" disabled> Save Response </button>
+            </div>
+        </div>
+
+    </body>
+</html>     

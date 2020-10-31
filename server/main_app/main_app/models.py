@@ -5,10 +5,13 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
+    address = models.TextField(max_length=500, blank=True)
+    email_id = models.TextField(null=True,blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    firstname = models.CharField(null=True, blank=True)
+    lastname=models.CharField(null=True,blank=True)
     
 
 

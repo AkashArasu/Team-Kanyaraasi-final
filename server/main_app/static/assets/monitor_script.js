@@ -6,7 +6,7 @@ let poses = [];
 let memory = null;
 let wnd = [];
 let warn = []
-let sz = 300;
+let sz = 200;
 //
 
 //Config vars for people in frame
@@ -52,10 +52,12 @@ function setup() {
 	//
 	cnv = createCanvas(250, 250);
 	webcam_output = createCapture(VIDEO);
+	// cnve = document.getElementById('defaultCanvas0')
+	// cnve.style.top = "510px";
 	console.log(width, height);
 	webcam_output.size(width, height);
 
-	cnv.position(1080+200, 57);
+	cnv.position(1080+200, 455);
 	poseNet = ml5.poseNet(webcam_output, modelReady);
 
 	poseNet.on('pose', function(results) {
@@ -64,13 +66,19 @@ function setup() {
 	webcam_output.hide();
 }
 
-susMarker = (type) => {
-	if (sus_time_markers.length == 0) {
-		sus_time_markers.push([frame_counter, type]);
+susMarker = (type, color) => {
+	if (color != "green") {
+		if (sus_time_markers.length == 0) {
+			sus_time_markers.push([frame_counter, type, color]);
+		}
+		else if (sus_time_markers[sus_time_markers.length - 1][1] != type) {
+			sus_time_markers.push([frame_counter, type, color]);
+		}
 	}
-	else if (sus_time_markers[sus_time_markers.length - 1][1] != type) {
-		sus_time_markers.push([frame_counter, type]);
-	}
+
+	var el = document.getElementById('status');
+	el.style.color = color;
+	select('#status').html("Status: "+type);
 }
 
 function modelReady() {
@@ -82,7 +90,7 @@ function modelReady() {
 
 handle_multiple_people = () => {
 	//
-	multiple_people_memory.add(poses.length>=2?2:1);
+	multiple_people_memory.add(poses.length==1?1:2);
 	people_wnd.push(multiple_people_memory.obgetMode());
 	let res = null;
 	if (people_wnd.length >= sz_people) {
@@ -96,26 +104,24 @@ handle_multiple_people = () => {
 		people_wnd.shift();
 	}
 
-	if (people_warn.length >= 5 && people_warn[0] == 1)
+	if (people_warn.length >= 5 && people_warn[0] == 1) {
 		people_warn = [];
+		susMarker("Ok", "green");
+	}
 	if (people_warn.length == 3 && people_warn[0] != 1) {
 		console.log("PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU");
 		//sus_time_markers.push([frame_counter, "multipeople-warn"]);
-		susMarker("multipeople-warn");
-		var el = document.getElementById('status');
-		el.style.borderColor = "yellow";
-		el.style.color = "yellow";
-		select('#status_people').html('PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU');
+		susMarker("nosingleperson-warn","red");
 	}
-	if (warn.length >= 5 && warn[0] != 1) {
-		//sus_time_markers.push([frame_counter, "multipeople-critical"]);
-		susMarker("multipeople-critical");
-		select('#status_people').html('Ask people to run away!');
-		var el = document.getElementById('status_people');
-		el.style.borderColor = "red";
-		el.style.color = "red";
-		//select('#videoPlayer').pause();
-	}
+	// if (warn.length >= 5 && warn[0] != 1) {
+	// 	//sus_time_markers.push([frame_counter, "multipeople-critical"]);
+	// 	susMarker("multipeople-critical");
+	// 	select('#status_people').html('Ask people to run away!');
+	// 	var el = document.getElementById('status_people');
+	// 	el.style.borderColor = "red";
+	// 	el.style.color = "red";
+	// 	//select('#videoPlayer').pause();
+	// }
 	//
 }
 
@@ -125,7 +131,7 @@ function draw() {
 	handle_multiple_people();
 	drawKeypoints();
 	drawSkeleton();
-	console.log(sus_time_markers);
+	// console.log(sus_time_markers);
 }
 
 function drawKeypoints() {
@@ -164,25 +170,29 @@ function checkValidity(pose)
 		for (var i = 0; i < 100;++i)
 		wnd.shift();
 	}
-	if (warn.length >= 5 && warn[0] == 's')
+	if (warn.length >= 5 && warn[0] == 's') {
 		warn = [];
+		susMarker("Ok", "green");
+	}
 	if (warn.length == 3 && warn[0] != 's') {
 		console.log("WARN");
 		//sus_time_markers.push([frame_counter, "lookaway-warn"]);
-		susMarker("lookaway-warn");
-		var el = document.getElementById('status');
-		el.style.borderColor = "yellow";
-		el.style.color = "yellow";
-		select('#status').html('Warning');
+		susMarker("lookaway-warn","yellow");
+		// var el = document.getElementById('status');
+		// el.style.borderColor = "yellow";
+		// el.style.color = "yellow";
+		// select('#status').html('Warning');
 	}
 	if (warn.length >= 5 && warn[0] != 'l') {
 		select('#status').html('Concentrate!');
+		warn = [];
 		//sus_time_markers.push([frame_counter, "lookaway-critical"]);
-		susMarker("lookaway-critical");
-		var el = document.getElementById('status');
-		el.style.borderColor = "red";
-		el.style.color = "red";
-		select('#videoPlayer').pause();
+		susMarker("lookaway-critical", "red");
+		alert("Please dont try to copy your activity is monitored!");
+		// var el = document.getElementById('status');
+		// el.style.borderColor = "red";
+		// el.style.color = "red";
+		// select('#videoPlayer').pause();
 	}
 	//wait till certain number of poses generate say 20000
 

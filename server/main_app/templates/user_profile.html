@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm"></div>
             <div class="col-sm-3 text-center span-heading-effect" name="candidate-name">
-                <h4> {} </h4>
+                <h4> {{user.username}} </h4>
             </div>
             <div class="col-sm"></div>
         </div> <br />
@@ -31,47 +31,6 @@
             <div class="col-sm-2 bg-dark" name="degree"> Computer Science and Engineering </div>
             <div class="col-sm-2 bg-light text-dark" name="institution"> Vellore Institute of Technology, Chennai</div>
             <div class="col-sm-2 bg-dark" name="short-description"> Looking for an ML internship </div>
-            <div class="col-sm-3"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <!-- Present Resume -->
-            <button style="padding-top:5px" class="col-sm-3 bg-light text-dark text-center">
-                <label for="existing-resume"> Download your resume </label>
-                <i class="fa fa-download" aria-hidden="true"></i>
-            </button>
-
-            <!-- New Resume -->
-            <button style="padding-top:5px" class="col-sm-3 bg-light text-dark text-center" onclick="showUploadDiv()">
-                <label for="existing-resume"> Update resume </label>
-                <i class="fa fa-upload" aria-hidden="true"></i>
-            </button>
-
-            <div class="col-sm-3"></div>
-        </div>
-
-        <!-- Upload New Resume -->
-        <div class="row" style="margin-top: 20px;">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6 bg-light border border-rounded border-secondary" id="upload-box"
-                style="display: none;">
-                <div style="padding-top: 10px;"> <i class="fa fa-upload" aria-hidden="true"> </i> <label
-                        for="upload-resume">
-                        <h6> Upload Resume: </h6>
-                    </label> </div>
-                <form>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="resume" name="candidate-resume"
-                            onchange="$('#upload').html(this.files[0].name)">
-                        <label class="custom-file-label text-truncate" id="upload" for="upload-resume">Choose
-                            file</label>
-                    </div>
-
-                    <div style="margin-top:15px" class="text-center"> <button class="btn btn-dark"> Upload Resume
-                        </button> </div>
-                </form>
-            </div>
             <div class="col-sm-3"></div>
         </div>
 

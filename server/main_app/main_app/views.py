@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from .models import Profile
 from django.shortcuts import render, redirect
 from . import forms
 
@@ -10,6 +11,7 @@ def signup(request):
             user = form.save()
             username = form.cleaned_data.get('email_id')
             password = form.cleaned_data.get('password1')
+            photo = form.cleaned_data.get('photo')
             #user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
@@ -19,6 +21,7 @@ def signup(request):
 
 
 def get_user_profile(request, username):
-    user = User.objects.get(username=username)
+    user = Profile.objects.get(username=username)
+    print(user.profile)
     return render(request, 'user_profile.html', {"user": user})
 

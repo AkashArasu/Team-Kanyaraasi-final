@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% load crispy_forms_tags %}
+
+{% block custom %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/candidate.css' %}">
+<script src="{% static 'assets/capture.js' %}"></script>
+<link rel="stylesheet" href="{% static 'assets/camera.css' %}" type="text/css" media="all">
+{% endblock %}
 {% block content %}
 <h2>Sign up</h2>
-<div style="width: 50%;">
+<div id="part-1" style="margin-top: -90px;">
+    <div class="camera-box">
+        <h5> <u> Take a clear picture of youself. This would be used as the photo ID. </u></h5>
+    </div>
+    
+    <div class="camera-box">
+        <div class="camera">
+            <video id="video">Video stream not available.</video>
+            <button id="startbutton">Take photo</button>
+            <canvas id="canvas"> </canvas>
+        </div>
+    </div>
+    
+    <div class="camera-box">
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
+    </div>
+    
+    <div class="text-center">
+        <a class="btn btn-dark center-block" style="color: white;" onclick="showPart2()">Next</a>
+    </div>
+</div>
+<div id="part-2" style="display: none;width: 50%;">
 {% crispy form %}
 </div>
 {% endblock %}

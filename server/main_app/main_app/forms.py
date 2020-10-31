@@ -11,6 +11,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(
         max_length=254, help_text='Required. Inform a valid email address.')
     address = forms.CharField(widget=forms.Textarea)
+    photo=forms.CharField(widget=forms.HiddenInput,required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,9 +31,10 @@ class SignUpForm(UserCreationForm):
             ),
             'birth_date',
             'address',
+            'photo',
             Submit('submit', 'Sign in')
         )
     class Meta:
         model = User
-        fields = ('first_name', 'last_name','username','email',
+        fields = ('first_name', 'last_name','username','email','photo',
                   'birth_date','address', 'password1', 'password2',)

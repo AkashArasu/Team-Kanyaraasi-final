@@ -1,4 +1,13 @@
-(function() {
+function showPart2(){
+    document.getElementById("part-1").style.display='none';
+    navigator.mediaDevices.getUserMedia({video: false, audio: false})
+      .then(function(stream) {
+        video.stop()
+      })
+    document.getElementById("part-2").style.display='block';
+}
+
+(function () {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
@@ -88,6 +97,7 @@
 
         var data = canvas.toDataURL('image/png');
         console.log(data);
+        document.getElementById('id_photo').innerText = data;
         photo.setAttribute('src', data);
       } else {
         clearphoto();

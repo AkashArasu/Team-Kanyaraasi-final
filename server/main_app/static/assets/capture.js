@@ -1,11 +1,11 @@
-function showPart2(){
-    document.getElementById("part-1").style.display='none';
-    navigator.mediaDevices.getUserMedia({video: false, audio: false})
-      .then(function(stream) {
-        video.stop()
-      })
-    document.getElementById("part-2").style.display='block';
-}
+// function showPart2(){
+//     document.getElementById("part-1").style.display='none';
+//     navigator.mediaDevices.getUserMedia({video: false, audio: false})
+//       .then(function(stream) {
+//         video.stop()
+//       })
+//     document.getElementById("part-2").style.display='block';
+// }
 
 (function () {
     // The width and height of the captured photo. We will set the
@@ -108,4 +108,3 @@ function showPart2(){
     // once loading is complete.
     window.addEventListener('load', startup, false);
   })();
-  

@@ -1,36 +1,27 @@
-<html>
-    <head>
-        <title> SmartHire | Sign In </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript">
-            function startTestCheck(){
-                var chkbtn=document.getElementById('tandcCheck');
-                if (chkbtn.checked){
-                    document.getElementById('start-btn').disabled=false;
-                }
-                else{
-                    document.getElementById('start-btn').disabled=true;
+{% extends 'base.html' %}
+{% load static %}
+{% block custom %}
+<script type="text/javascript">
+    function startTestCheck() {
+        var chkbtn = document.getElementById('tandcCheck');
+        if (chkbtn.checked) {
+            document.getElementById('start-btn').disabled = false;
+        }
+        else {
+            document.getElementById('start-btn').disabled = true;
 
-                }
-            }
-        </script>
-    </head>
+        }
+    }
+</script>
+{% endblock %}
+{% block title %}T&C{% endblock %}
 
-    <body>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">    
-            <div style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white;"> <h4> ezLearn </h4> </div>          
-        </nav>     
-
+{% block content %} 
         <div class="container vertical-center" style="border: 1px solid; border-radius: 10px; margin-top: 5%; padding: 20px;">
             <h4 class="heading text-center"> <u> Terms and Conditions </u> </h4>
             <div>
                 <ol type="1">
+                    <li>{{tid}}</li>
                     <li> The duration of the test is {} hours</li>
                     <li> The Webcam and Mic should not be turned off during the course of the test </li>
                     <li> Impersonation is considered as a serious malpractice. You might be banned from taking further tests.</li>
@@ -40,8 +31,7 @@
                 <input type="checkbox" id="tandcCheck" style="margin-left: 20px;" onclick="startTestCheck()">  I Agree to the Terms and Conditions <br/>
             </div>
             <div class="text-center">
-            <button type="submit" class="btn btn-primary" id="start-btn" disabled> Start test </button>
+            <button type="submit" class="btn btn-primary" id="start-btn" disabled> <a href="{% url 'test' tid=tid %}">Start test</a> </button>
             </div>
         </div>
-    </body>
-</html>
+{% endblock %}

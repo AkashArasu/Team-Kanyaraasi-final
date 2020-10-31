@@ -7,13 +7,13 @@ def main():
     check_versions()
     sys.excepthook = cef.ExceptHook  # To shutdown all CEF processes on error
     g_applicationSettings = {
-        
+        "context_menu":{"enabled":False,"navigation":True}
     }
     g_commandLineSwitches = {
-        "enable-media-stream": "",
+        "enable-media-stream": ""
     }
     cef.Initialize(g_applicationSettings,g_commandLineSwitches)
-    cef.CreateBrowserSync(url="http://127.0.0.1:5500/client/monitor_frame.html",
+    cef.CreateBrowserSync(url="http://127.0.0.1:8000/",
                           window_title="EZExam")
     cef.MessageLoop()
     cef.Shutdown()

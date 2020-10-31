@@ -50,7 +50,7 @@ function setup() {
 	//People count expr
 	multiple_people_memory = new Slicer();
 	//
-	cnv=createCanvas(250, 250);
+	cnv = createCanvas(250, 250);
 	webcam_output = createCapture(VIDEO);
 	console.log(width, height);
 	webcam_output.size(width, height);

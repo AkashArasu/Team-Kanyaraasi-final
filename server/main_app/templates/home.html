@@ -1,7 +1,53 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h2>Home</h2>
+<div class="row">
+    <div class="col-sm-1"> </div>
+    {% if user.is_authenticated %}
+    <div class="col-sm-9">
+        <div class="tab-pane container" >
+            <div class="container test-item row" style="margin:10px">
+                <h4 class="test-name col-sm-10"> <u> Electromagnetism </u>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-clock-o" aria-hidden="true"></i> Duration: 45
+                        mins </div>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-calendar" aria-hidden="true"></i> Date:
+                        November 1, 2020 </div>
+                </h4>
+                <button class='col-sm-2 btn btn-success center-block enter-test'> <a href="{% url 'tandc' id=1 %}">Enter Test</a> </button>
+            </div>
+
+            <div class="container test-item row" style="margin:10px">
+                <h4 class="test-name col-sm-10"> <u> Data Structures and Algorithms </u>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-clock-o" aria-hidden="true"></i> Duration: 2hrs
+                    </div>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-calendar" aria-hidden="true"></i> Date:
+                        November 1, 2020 </div>
+                </h4>
+                <button class='col-sm-2 btn btn-success center-block enter-test'> Enter Test </button>
+            </div>
+
+            <div class="container test-item row" style="margin:10px">
+                <h4 class="test-name col-sm-10"> <u> Aptitude and Reasoning </u>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-clock-o" aria-hidden="true"></i> Duration: 1hr
+                        30mins </div>
+                    <div class="col-sm-8 test-metadata"> <i class="fa fa-calendar" aria-hidden="true"></i> Date:
+                        November 2, 2020 </div>
+                </h4>
+                <button class='col-sm-2 btn btn-success center-block enter-test'> Enter Test </button>
+            </div>
+
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <h4>Welcome to EZExam</h4>
+    <h4>Please Log in/Signup</h4>
+    
+    <button class='btn btn-danger '><a href="{% url 'signup' %}">Signup</a></button>
+    <button class='btn btn-success'><a href="{% url 'login' %}">Login</a></button>
+    </div>
+    {% endif %}
 {% endblock %}

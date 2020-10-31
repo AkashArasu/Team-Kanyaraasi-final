@@ -6,3 +6,30 @@
     cef.Initialize(g_app,g_commandLineSwitches)
 NameError: name 'g_app' is not defined
 
+
+[2020-10-31 20:08:43] Traceback (most recent call last):
+  File "browser_main.py", line 34, in <module>
+    main()
+  File "browser_main.py", line 15, in main
+    cef.Initialize(g_applicationSettings,g_commandLineSwitches)
+  File "cefpython_py36.pyx", line 573, in cefpython_py36.Initialize
+TypeError: 'str' object does not support item assignment
+
+
+[2020-10-31 20:14:54] Traceback (most recent call last):
+  File "browser_main.py", line 34, in <module>
+    main()
+  File "browser_main.py", line 15, in main
+    cef.Initialize(g_applicationSettings,g_commandLineSwitches)
+  File "cefpython_py36.pyx", line 573, in cefpython_py36.Initialize
+TypeError: 'str' object does not support item assignment
+
+
+[2020-10-31 20:15:04] Traceback (most recent call last):
+  File "browser_main.py", line 34, in <module>
+    main()
+  File "browser_main.py", line 15, in main
+    cef.Initialize(g_applicationSettings,g_commandLineSwitches)
+  File "cefpython_py36.pyx", line 573, in cefpython_py36.Initialize
+TypeError: 'set' object does not support item assignment
+

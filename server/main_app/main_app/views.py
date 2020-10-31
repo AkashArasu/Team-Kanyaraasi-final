@@ -8,11 +8,9 @@ def signup(request):
         form = forms.SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.birth_date = form.cleaned_data.get('birth_date')
-            user.save()
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
+            username = form.cleaned_data.get('email_id')
+            password = form.cleaned_data.get('password1')
+            #user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
     else:
@@ -23,3 +21,4 @@ def signup(request):
 def get_user_profile(request, username):
     user = User.objects.get(username=username)
     return render(request, 'user_profile.html', {"user": user})
+

@@ -8,22 +8,31 @@ class SignUpForm(UserCreationForm):
     birth_date = forms.DateField(help_text='Required. Format: DD-MM-YYYY', widget=forms.TextInput(
         attrs={'type': 'date'}
     ))
-    firstname = forms.CharField(help_text='First Name', required=True)
-    lastname = forms.CharField(help_text='Last Name')
+    email = forms.EmailField(
+        max_length=254, help_text='Required. Inform a valid email address.')
+    address = forms.CharField(widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
-                Column('firstname', css_class='form-group col-md-6 mb-0'),
-                Column('lastname', css_class='form-group col-md-6 mb-0'),
+                Column('first_name', css_class='form-group col-md-6 mb-0'),
+                Column('last_name', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            'username',
+            'email',
+            Row(
+                Column('password1', css_class='form-group col-md-6 mb-0'),
+                Column('password2', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
             'birth_date',
+            'address',
             Submit('submit', 'Sign in')
         )
     class Meta:
         model = User
-        fields = ('firstname', 'lastname',
-                  'birth_date', 'password1', 'password2',)
+        fields = ('first_name', 'last_name','username','email',
+                  'birth_date','address', 'password1', 'password2',)

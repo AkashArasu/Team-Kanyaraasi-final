@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^signup/proctor/$', views.proctor_signup, name = 'proctor_signup'),
     url(r'^tandc/(?P<id>[0-9]+)$', views.get_tandc, name = 'tandc'),
     url(r'^test/(?P<tid>[0-9]+)$',views.get_test,name='test'),
+    url(r'^faceauth/',views.faceauth,name='faceauth')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

@@ -71,7 +71,6 @@ python manage.py createsuperuser
 ## Instructions to start browser[DEV]
 
 ```sh
-pip3 install cefpython3=66.0
 python3 manage.py runserver (running the server, then starting the shell)
 cd browser_shell & python3 browser_main.py
 ```

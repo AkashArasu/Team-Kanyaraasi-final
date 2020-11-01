@@ -54,7 +54,7 @@ cd browser_shell & python3 browser_main.py
 ### 3. Create and run the migrations:
 
 ```
-python manage.py makemigrations
+python manage.py makemigrations main_app
 python manage.py migrate
 ```
 

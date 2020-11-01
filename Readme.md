@@ -15,6 +15,8 @@ cd browser_shell & pip3 browser_main.py
 
 * Install miniconda with the latest Python3 distribution
 
+https://docs.conda.io/en/latest/miniconda.html
+
 * Create a new conda virtual environment
 
 ```conda create -n venv python=3.7 cmake```

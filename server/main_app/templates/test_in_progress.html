@@ -73,6 +73,8 @@
                 }
             }
         </script>
+
+        <!-- Voice Activity Detection -->
         <script type="module">
             import "../static/assets/hark.bundle.js";  
     
@@ -136,22 +138,22 @@
         border-radius: 2px;color:green;border: 2px solid #000000;background-color: #747573;">
         Status: Ok
     </div>
-        <div class="container" style="margin: 50px auto auto auto; border:1px solid black; padding: 10px;">
-            <div class="question text-justify"> {question} </div> <hr style="border: 1px dotted;">
-                <div>
-                    <input type="radio" id="a" name="mcq" onclick="saveOption()"> 
-                    <label for="option-a"> {option a} </label><br/>
-                    <input type="radio" id="b" name="mcq" onclick="saveOption()"> 
-                    <label for="option-b"> {option b} </label><br/>
-                    <input type="radio" id="c" name="mcq" onclick="saveOption()"> 
-                    <label for="option-c"> {option c} </label><br/>
-                    <input type="radio" id="d" name="mcq" onclick="saveOption()"> 
-                    <label for="option-d"> {option d} </label><br/>
-                </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary" id="save-btn" disabled> Save Response </button>
+    <div class="container" style="margin: 50px auto auto auto; border:1px solid black; padding: 10px;">
+        <div class="question text-justify"> {question} </div> <hr style="border: 1px dotted;">
+            <div>
+                <input type="radio" id="a" name="mcq" onclick="saveOption()"> 
+                <label for="option-a"> {option a} </label><br/>
+                <input type="radio" id="b" name="mcq" onclick="saveOption()"> 
+                <label for="option-b"> {option b} </label><br/>
+                <input type="radio" id="c" name="mcq" onclick="saveOption()"> 
+                <label for="option-c"> {option c} </label><br/>
+                <input type="radio" id="d" name="mcq" onclick="saveOption()"> 
+                <label for="option-d"> {option d} </label><br/>
             </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="save-btn" disabled> Save Response </button>
         </div>
+    </div>
         
-        {% endblock %}
+    {% endblock %}

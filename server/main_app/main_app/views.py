@@ -68,25 +68,36 @@ def proctor_signup(request):
 @api_view(["POST"])
 def faceauth(data):
     try:
-        object=data.data
-        
+        object=json.loads(data.body)
+        print(object)
         #object =={'id':'email id or whatever','img':'the base 64 string'} 
         #img must be in jpeg format
+        if(object["id"]==0):
+            #save it in db
+            encoded_img=object["img"]
+            imgdata = base64.b64decode(encoded_img)
+            f1=open("./user_db_pic.jpeg",'wb')
+            f1.write(imgdata)
+            f1.close()
+            return JsonResponse("Saved!",safe=False)
+
+
+
         encoded_img=object['img']
         imgdata = base64.b64decode(encoded_img)
         
-        f=open("./temp.jpg",'wb')
+        f=open("./temp.jpeg",'wb')
         f.write(imgdata)
         
         picture_of_me=face_recognition.load_image_file(f.name)
         face_encoding = face_recognition.face_encodings(picture_of_me)[0]
         
-        ref_path="C:/Users/takas/OneDrive/Pictures/Camera Roll/Akash DB.jpg" #the path to the image stored for reference
+        ref_path="./user_db_pic.jpeg" #the path to the image stored for reference
         
         ref_image_enc=face_recognition.face_encodings(face_recognition.load_image_file(ref_path))[0]
         results = face_recognition.compare_faces([face_encoding],ref_image_enc)
         f.close()
-        os.remove("./temp.jpg")
+        os.remove("./temp.jpeg")
         if(results[0]==True):
             
             return JsonResponse("Authorized!",safe=False)

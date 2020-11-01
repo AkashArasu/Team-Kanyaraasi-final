@@ -6,7 +6,7 @@
 //       })
 //     document.getElementById("part-2").style.display='block';
 // }
-
+// const fetch = require('isomorphic-fetch')
 (function () {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
@@ -63,7 +63,16 @@
       }, false);
   
       startbutton.addEventListener('click', function(ev){
-        takepicture();
+        data=takepicture();
+        res=()=>
+        {
+          return fetch("http://127.0.0.1:8000/faceauth/",{
+          method:'POST',
+          body:JSON.stringify({"id":0,"img":data[1].split(",")[1]})
+        });
+      }
+      res().then(response=>console.log(response.json()))
+
         ev.preventDefault();
       }, false);
       
@@ -78,7 +87,7 @@
       context.fillStyle = "#AAA";
       context.fillRect(0, 0, canvas.width, canvas.height);
   
-      var data = canvas.toDataURL('image/png');
+      var data = canvas.toDataURL('image/jpeg');
       photo.setAttribute('src', data);
     }
     
@@ -95,10 +104,12 @@
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
 
-        var data = canvas.toDataURL('image/png');
+        var data = canvas.toDataURL('image/jpeg');
+
         console.log(data);
         document.getElementById('id_photo').value = data;
         photo.setAttribute('src', data);
+        return [Math.random(),data]
       } else {
         clearphoto();
       }

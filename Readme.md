@@ -4,6 +4,33 @@ To be filled
 
 ## Setup Environment
 
+### Easy Instructions For setup (Linux/WSL-windows/Mac)
+
++ Make sure you have python3 >=3.6 and pip installed already
+
++ Make sure node>=15 is installed
+
+```sh
+sudo chmod +x linux_config.sh
+sudo chmod +x linux_run_noshell.sh
+sudo chmod +x linux_run_shell.sh
+./linux_config.sh
+```
+
++ To run with browser_shell
+
+```sh
+./linux_run_shell.sh
+```
+
++ To run on normal browser
+
+```sh
+./linux_run_noshell.sh
+```
+
++ Create a superuser and go to localhost:8000
+
 ### Conda virtual environment
 
 * Install miniconda with the latest Python3 distribution
@@ -37,6 +64,7 @@ pip3 install cefpython3=66.0
 python3 manage.py runserver (running the server, then starting the shell)
 cd browser_shell & python3 browser_main.py
 ```
+
 ## Instructions to start and run Django app
 
 ### 1. Remove these files first

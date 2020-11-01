@@ -31,6 +31,16 @@ sudo chmod +x linux_run_shell.sh
 
 + Create a superuser and go to localhost:8000
 
+### To run proctor stream server
+
+```sh
+cd server/web_server
+npm install
+node index
+```
+
++ The proctor stream server will be live at localhost:3000
+
 ### Conda virtual environment
 
 * Install miniconda with the latest Python3 distribution

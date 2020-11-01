@@ -33,7 +33,7 @@ class SignUpForm(forms.ModelForm):
         attrs={'type': 'date'}
     ))
     address = forms.CharField(widget=forms.Textarea)
-    photo = forms.CharField(widget=forms.Textarea, required=False)
+    photo = forms.CharField(widget=forms.HiddenInput(), required=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -88,16 +88,30 @@
     
             var options = {};
             var speechEvents = hark(blog, options);
+            var status_button = document.getElementById("VADStatus");
     
             speechEvents.on('speaking', function() {
             console.log('speaking');
+            
+            status_button.className = "btn btn-danger";
+            status_button.innerHTML = "Background Noise Detected :(";
             });
-    
+
             speechEvents.on('stopped_speaking', function() {
             console.log('stopped_speaking');
+
+            status_button.className = "btn btn-success";
+            status_button.innerHTML = "No Background Noise :)";
                 });
             };
         </script>
+        <style>
+            #VADStatus {
+        position:fixed;
+        right: 5em;
+        bottom: 2em;
+    }
+        </style>
 
     <script src="{% static 'assets/monitor_script.js' %}"></script>
     </head>
@@ -142,7 +156,7 @@
         <div class="question text-justify"> {question} </div> <hr style="border: 1px dotted;">
             <div>
                 <input type="radio" id="a" name="mcq" onclick="saveOption()"> 
-                <label for="option-a"> {option a} </label><br/>
+                <label for="option-a"> {option adocument.getElementById("VAD")} </label><br/>
                 <input type="radio" id="b" name="mcq" onclick="saveOption()"> 
                 <label for="option-b"> {option b} </label><br/>
                 <input type="radio" id="c" name="mcq" onclick="saveOption()"> 
@@ -155,5 +169,6 @@
             <button type="submit" class="btn btn-primary" id="save-btn" disabled> Save Response </button>
         </div>
     </div>
+    <button id="VADStatus" type="button" class="btn btn-warning">Audio Status</button>
         
     {% endblock %}

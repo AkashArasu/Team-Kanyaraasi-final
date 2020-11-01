@@ -2,18 +2,13 @@
 
 To be filled
 
-
-### Instructions to start browser[DEV]
-
-```sh
-pip3 install cefpython3=66.0
-cd browser_shell & pip3 browser_main.py
-```
-
+## Setup Environment
 
 ### Conda virtual environment
 
 * Install miniconda with the latest Python3 distribution
+
+https://docs.conda.io/en/latest/miniconda.html
 
 * Create a new conda virtual environment
 
@@ -34,6 +29,14 @@ virtualenv env
 source ./env/bin/activate
 pip install -r requirements.txt
 ```
+## Instructions to start browser[DEV]
+
+```sh
+pip3 install cefpython3=66.0
+cd browser_shell & pip3 browser_main.py
+```
+## Instructions to start and run Django app
+
 ### 1. Remove these files first
 
 * Delete all .py files in migrations folder except __init.py__
@@ -57,7 +60,7 @@ python manage.py migrate
 
 ### 4. Sync the database:
 
-```manage.py migrate --run-syncdb```
+```python manage.py migrate --run-syncdb```
 
 ### 5. Create new Superuser
 

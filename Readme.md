@@ -35,17 +35,6 @@ virtualenv env
 source ./env/bin/activate
 pip install -r requirements.txt
 ```
-## Instructions to start browser[DEV]
-
-```sh
-<<<<<<< HEAD
-=======
-pip3 install cefpython3=66.0
-
-python3 manage.py runserver (running the server, then starting the shell)
->>>>>>> a76836fb659c0c2771078e2f5641b21fec093367
-cd browser_shell & python3 browser_main.py
-```
 ## Instructions to start and run Django app
 
 ### 1. Remove these files first
@@ -78,4 +67,11 @@ python manage.py migrate --run-syncdb
 
 ```sh
 python manage.py createsuperuser
+```
+## Instructions to start browser[DEV]
+
+```sh
+pip3 install cefpython3=66.0
+python3 manage.py runserver (running the server, then starting the shell)
+cd browser_shell & python3 browser_main.py
 ```

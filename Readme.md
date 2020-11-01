@@ -2,14 +2,7 @@
 
 To be filled
 
-
-### Instructions to start browser[DEV]
-
-```sh
-pip3 install cefpython3=66.0
-cd browser_shell & pip3 browser_main.py
-```
-
+## Setup Environment
 
 ### Conda virtual environment
 
@@ -36,6 +29,14 @@ virtualenv env
 source ./env/bin/activate
 pip install -r requirements.txt
 ```
+## Instructions to start browser[DEV]
+
+```sh
+pip3 install cefpython3=66.0
+cd browser_shell & pip3 browser_main.py
+```
+## Instructions to start and run Django app
+
 ### 1. Remove these files first
 
 * Delete all .py files in migrations folder except __init.py__

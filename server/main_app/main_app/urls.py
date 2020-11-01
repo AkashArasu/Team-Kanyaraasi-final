@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name = 'home.html'), name = 'home'),
+    url(r'^$', views.home, name = 'home'),
     url(r'^admin/', admin.site.urls),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -30,7 +30,9 @@ urlpatterns = [
     url(r'profile/(?P<username>[a-zA-Z0-9._]+)$', views.get_user_profile, name = 'profile'),
     url(r'^signup/proctor/$', views.proctor_signup, name = 'proctor_signup'),
     url(r'^tandc/(?P<id>[0-9]+)$', views.get_tandc, name = 'tandc'),
-    url(r'^test/(?P<tid>[0-9]+)$',views.get_test,name='test'),
+    url(r'^test/(?P<tid>[0-9]+)$', views.get_test, name = 'test'),
+    url(r'^view_list/(?P<roomid>[0-9]+)$', views.get_sus_list, name = 'view_sus_list'),
+    url(r'^view_sus/(?P<roomid>[0-9]+)/(?P<username>[a-zA-Z0-9._]+)$',views.get_sus,name='view_sus')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

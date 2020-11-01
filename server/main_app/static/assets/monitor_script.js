@@ -2,6 +2,9 @@ let webcam_output;
 let poseNet;
 let poses = [];
 
+let name = window.localStorage['username'];
+let host = host_url;
+let room = '123'
 //Config vars for face pose
 let memory = null;
 let wnd = [];
@@ -46,6 +49,7 @@ class Slicer{
 
 var cnv;
 function setup() {
+	console.log(name);
 	memory = new Slicer();
 	//People count expr
 	multiple_people_memory = new Slicer();
@@ -66,6 +70,10 @@ function setup() {
 	webcam_output.hide();
 }
 
+getDataURL = () => {
+	return document.getElementById('defaultCanvas0').toDataURL();
+}
+
 susMarker = (type, color) => {
 	if (color != "green") {
 		if (sus_time_markers.length == 0) {
@@ -75,6 +83,24 @@ susMarker = (type, color) => {
 			sus_time_markers.push([frame_counter, type, color]);
 		}
 	}
+
+	
+	var frame = getDataURL();
+	var data = {
+		"frame": frame,
+		"username": name,
+		"timeStamp": frame_counter
+	};
+
+	fetch(`${host}/check/${room}`, {
+		method: 'POST',
+		mode: "cors",
+		cache: "no-cache",
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	});
 
 	var el = document.getElementById('status');
 	el.style.color = color;
@@ -109,7 +135,7 @@ handle_multiple_people = () => {
 		susMarker("Ok", "green");
 	}
 	if (people_warn.length == 3 && people_warn[0] != 1) {
-		console.log("PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU");
+		//console.log("PLEASE ASK PEOPLE TO MOVE AWAY FROM YOU");
 		//sus_time_markers.push([frame_counter, "multipeople-warn"]);
 		susMarker("nosingleperson-warn","red");
 	}
@@ -131,7 +157,7 @@ function draw() {
 	handle_multiple_people();
 	drawKeypoints();
 	drawSkeleton();
-	// console.log(sus_time_markers);
+	
 }
 
 function drawKeypoints() {
@@ -161,7 +187,7 @@ function checkValidity(pose)
 	if (wnd.length >= sz)
 	{
 		res = Slicer.getMode(wnd);
-		console.log(res,warn);
+		//console.log(res,warn);
 		if (warn.length == 0)
 			warn.push(res);
 		else if (warn[warn.length - 1] == res)
@@ -175,7 +201,7 @@ function checkValidity(pose)
 		susMarker("Ok", "green");
 	}
 	if (warn.length == 3 && warn[0] != 's') {
-		console.log("WARN");
+		//console.log("WARN");
 		//sus_time_markers.push([frame_counter, "lookaway-warn"]);
 		susMarker("lookaway-warn","yellow");
 		// var el = document.getElementById('status');

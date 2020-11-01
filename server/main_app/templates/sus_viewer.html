@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<!-- <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-lazy-load@3.1.13/lib/LazyLoad.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script> -->
+<!-- Load our React component. -->
+<!-- <script type="text/babel" src="{% static 'assets/viewer.js' %}">
+    </script> -->
+<style>
+    .container {
+        display: grid;
+        grid-gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-rows: 300px;
+
+    }
+
+    .container>div>img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    img {
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .container>div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: #20263f;
+    }
+</style>
+<div> Suspect Monitor</div>
+<div id="root" class='container'>
+</div>
+<script>
+
+    var room = "{{roomid}}";
+    var student="{{username}}";
+    var root = document.getElementById("root");
+    fetch(`${host_url}/view/${room}/${student}`, {
+        method: 'GET',
+        mode: "cors",
+        cache: "default",
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(res => res.json())
+            .then((json) => {
+                for (var key in json) {
+                    // console.log(key);
+                    root.innerHTML += `
+            <div width="30px" height="30px">
+                <img src="${json[key]['photo']}"  />
+               <div>${json[key]['time']}</div>
+                
+            </div>
+            `
+                }
+            }
+            //console.log(json)
+        )
+</script>
+
+{% endblock %}

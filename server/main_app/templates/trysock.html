@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <ul id="events"></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        const socket = io();
+
+        socket.on('connect', () => {
+            console.log('connected');
+        });
+
+        setInterval(() => {
+            socket.on('faceauth',()=> {
+                socket.emit('img',data);
+            });
+        }, 10000);
+
+    </script>
+</body>
+</html>

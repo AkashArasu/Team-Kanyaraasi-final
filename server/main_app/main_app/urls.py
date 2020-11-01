@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^tandc/(?P<id>[0-9]+)$', views.get_tandc, name = 'tandc'),
     url(r'^test/(?P<tid>[0-9]+)$',views.get_test,name='test'),
     url(r'^faceauth/',views.faceauth,name='faceauth')
-    url(r'^test/(?P<tid>[0-9]+)$', views.get_test, name = 'test'),
     url(r'^view_list/(?P<roomid>[0-9]+)$', views.get_sus_list, name = 'view_sus_list'),
     url(r'^view_sus/(?P<roomid>[0-9]+)/(?P<username>[a-zA-Z0-9._]+)$',views.get_sus,name='view_sus')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

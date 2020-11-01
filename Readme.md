@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ```sh
 pip3 install cefpython3=66.0
-cd browser_shell & pip3 browser_main.py
+cd browser_shell & python3 browser_main.py
 ```
 ## Instructions to start and run Django app
 

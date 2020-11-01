@@ -11,13 +11,28 @@ cd browser_shell & pip3 browser_main.py
 ```
 
 
-### Run python server(User)
+### Conda virtual environment
+
+* Install miniconda with the latest Python3 distribution
+
+* Create a new conda virtual environment
+
+```conda create -n venv python=3.7 cmake```
+
+* Activate the conda virtual environment
+
+```conda activate venv```
+
+* Install the requirements.txt
+
+```pip install -r requirements.txt```
+
+### Virtualenv
 
 ```sh
 virtualenv env
 source ./env/bin/activate
 pip install -r requirements.txt
-python manage.py runserver
 ```
 ### 1. Remove these files first
 

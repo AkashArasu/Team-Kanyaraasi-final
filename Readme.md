@@ -60,7 +60,7 @@ python manage.py migrate
 
 ### 4. Sync the database:
 
-```manage.py migrate --run-syncdb```
+```python manage.py migrate --run-syncdb```
 
 ### 5. Create new Superuser
 

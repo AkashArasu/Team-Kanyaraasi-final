@@ -7,6 +7,12 @@
 <div class="row">
     <div class="col-sm-1"> </div>
     {% if user.is_authenticated %}
+    {% if profile.is_proctor %}
+    <button><a href="{% url 'view_sus_list' roomid=123 %}">View Suspected</a></button>
+    {% else %}
+    <script>
+        window.localStorage['username']="{{user.username}}";
+    </script>
     <div class="col-sm-9">
         <div class="tab-pane container" >
             <div class="container test-item row" style="margin:10px">
@@ -41,6 +47,7 @@
 
         </div>
     </div>
+    {% endif %}
     {% else %}
     <div>
         <h4>Welcome to EZExam</h4>

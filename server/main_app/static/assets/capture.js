@@ -6,7 +6,6 @@ function showPart2(){
       })
     document.getElementById("part-2").style.display='block';
 }
-// const fetch = require('isomorphic-fetch')
 (function () {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be

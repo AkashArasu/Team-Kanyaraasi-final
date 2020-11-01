@@ -110,9 +110,15 @@ def faceauth(data):
 def get_tandc(request, id):
     return render(request, 'tandc.html',{'tid':id})
 
+def get_sus_list(request, roomid):
+    return render(request, 'thumbviewer_comp.html', {'roomid': roomid})
+
+
+def get_sus(request, roomid, username):
+    return render(request,'sus_viewer.html',{'roomid':roomid,'username':username})
 
 def get_test(request, tid):
-    return render(request,'test_in_progress.html')
+    return render(request, 'test_in_progress.html', {"user": request.user})
 
 def get_user_profile(request,username):
     # print(instance.id)
@@ -123,3 +129,11 @@ def get_user_profile(request,username):
 
     return render(request, 'user_profile.html', {"user":user,"profile":instance})
 
+def home(request):
+    print("hello",str(request.user))
+    if(str(request.user)!="AnonymousUser"):
+        user = User.objects.get(username=request.user)
+        instance = get_object_or_404(Profile, user=request.user)
+        return render(request, 'home.html', {"user": user, "profile": instance})
+    return render(request, 'home.html', {"user": {}, "profile": {}})
+    

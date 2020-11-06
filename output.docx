@@ -1,0 +1,76 @@
+Folder PATH listing for volume VIT
+Volume serial number is A816-87BD
+D:.
+|   .gitignore
+|   face_authorization_how_to.txt
+|   output.docx
+|   Readme.md
+|   test.html
+|   
++---browser_shell
+|       browser_main.py
+|       error.log
+|       
++---client
+|   |   monitor_frame.html
+|   |   
+|   \---benchmarks
+|           cpu_usage_i7_7700HQ.png
+|           gpu_usage_intel_hd_610.png
+|           overall_resources_30fps_predator.jpg
+|           
+\---server
+    +---main_app
+    |   |   manage.py
+    |   |   questions.json
+    |   |   requirements.txt
+    |   |   
+    |   +---main_app
+    |   |   |   admin.py
+    |   |   |   asgi.py
+    |   |   |   forms.py
+    |   |   |   models.py
+    |   |   |   settings.py
+    |   |   |   urls.py
+    |   |   |   views.py
+    |   |   |   wsgi.py
+    |   |   |   
+    |   |   \---migrations
+    |   |           0001_initial.py
+    |   |           0002_profile_photo.py
+    |   |           0003_auto_20201031_1643.py
+    |   |           
+    |   +---static
+    |   |   \---assets
+    |   |           base.css
+    |   |           camera.css
+    |   |           candidate.css
+    |   |           capture.js
+    |   |           monitor_script.js
+    |   |           stream.js
+    |   |           viewer.js
+    |   |           
+    |   \---templates
+    |       |   base.html
+    |       |   home.html
+    |       |   logged_out.html
+    |       |   login.html
+    |       |   package-lock.json
+    |       |   signup.html
+    |       |   sus_viewer.html
+    |       |   tandc.html
+    |       |   test_in_progress.html
+    |       |   thumbviewer_comp.html
+    |       |   user_profile.html
+    |       |   
+    |       \---node_modules
+    |           \---fs
+    |                   package.json
+    |                   README.md
+    |                   
+    \---web_server
+            db.txt
+            index.js
+            package-lock.json
+            package.json
+            
